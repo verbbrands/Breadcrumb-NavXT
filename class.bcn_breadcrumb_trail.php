@@ -229,8 +229,8 @@ class bcn_breadcrumb_trail
 			else if(is_taxonomy_hierarchical($this->opt['Spost_' . $type . '_taxonomy_type']))
 			{
 				//Fill a temporary object with the terms
-				$bcn_object = get_the_terms($id, $this->opt['Spost_' . $type . '_taxonomy_type']);
-				if(is_array($bcn_object))
+				$bcn_object = apply_filters('bcn_post_terms', get_the_terms($id, $this->opt['Spost_' . $type . '_taxonomy_type']));
+				if(is_array($bcn_object) && !empty($bcn_object))
 				{
 					//Now find which one has a parent, pick the first one that does
 					$bcn_use_term = key($bcn_object);
